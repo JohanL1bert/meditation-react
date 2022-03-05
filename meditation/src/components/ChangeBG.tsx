@@ -9,10 +9,10 @@ export const ChangeBG: React.FC = () => {
     return (
         <div className="bg__inner">
             <button aria-label="buutton change BG" type="button" className="bg__btn__left" onClick={goPrev}>
-                left
+                prev
             </button>
             <button aria-label="buutton change BG" type="button" className="bg__btn__rigth" onClick={goNext}>
-                right
+                next
             </button>
         </div>
     );
