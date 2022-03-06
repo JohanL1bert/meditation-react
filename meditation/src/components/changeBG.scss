@@ -1,7 +1,39 @@
+@mixin buttonBg {
+    width: 100px;
+    height: 50px;
+    border-radius: 14%;
+    border: 1px solid white;
+    cursor: pointer;
+    background: none;
+    font-size: 20px;
+    color: white;
+    transition: 0.5s ease;
+}
+
+@mixin hoverButton {
+    background-color: white;
+    color: black;
+}
+
 .bg {
     &__inner {
         display: flex;
         justify-content: space-between;
         gap: 50px;
+    }
+
+    &__btn {
+        &__left {
+            @include buttonBg;
+            &:hover {
+                @include hoverButton;
+            }
+        }
+        &__rigth {
+            @include buttonBg;
+            &:hover {
+                @include hoverButton;
+            }
+        }
     }
 }
