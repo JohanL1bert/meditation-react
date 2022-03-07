@@ -1,9 +1,8 @@
 import React from 'react';
 import './bg.scss';
-import videoRain from '../assets/video/rain.mp4';
 
-export const BG = () => (
+export const BG = ({ videoState }: { videoState: string[] }) => (
     <video>
-        <source src={videoRain} type="video/mp4" />
+        <source src={videoState[0]} type="video/mp4" />
     </video>
 );

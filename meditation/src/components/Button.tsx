@@ -8,8 +8,7 @@ import './buttons.scss';
  */
 export const Button = ({ setSoundTime }: { setSoundTime: React.Dispatch<React.SetStateAction<number>> }) => {
     const getTime = (time: number) => {
-        console.log(time);
-        console.log(setSoundTime);
+        setSoundTime(time);
     };
 
     return (

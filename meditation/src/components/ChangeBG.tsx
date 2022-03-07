@@ -1,7 +1,7 @@
 import React from 'react';
 import './changeBG.scss';
 
-export const ChangeBG: React.FC = () => {
+export const ChangeBG = () => {
     const goPrev = () => {};
 
     const goNext = () => {};
