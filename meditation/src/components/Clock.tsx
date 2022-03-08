@@ -1,34 +1,50 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import './clock.scss';
 import playButton from '../assets/svg/play.svg';
 import pauseButton from '../assets/svg/pause.svg';
+import { profileMusic } from '../Profile';
 
 export const Clock = (props: any) => {
-    const { playStatus, setPlayStatus, soundTime, music, videoState, setVideoState } = props;
+    const { playStatus, setPlayStatus, soundTime, counter } = props;
 
     const svgEl = useRef(null);
-    const audioRef = useRef(new Audio(music[0]));
-    console.log(setVideoState);
+    const audioRef = useRef(null);
     /* const [strokeLength, setStrokeLength] = useState<number>(0); */
 
     const changePlayStatus = () => {
-        if (svgEl.current !== null) {
-            /* const geometrySvgEl = svgEl.current as SVGGeometryElement; */
-        }
+        const audio = audioRef.current as unknown as HTMLAudioElement;
+
+        /*         if (svgEl.current !== null) {
+            const geometrySvgEl = svgEl.current as SVGGeometryElement;
+        } */
 
         if (playStatus) {
-            audioRef.current.loop = true;
-            audioRef.current.play();
+            audio.load();
+            audio.play();
         } else {
-            audioRef.current.pause();
+            audio.pause();
         }
 
-        console.log(videoState[0]);
         setPlayStatus(!playStatus);
     };
 
+    useEffect(() => {
+        changePlayStatus();
+
+        return () => {
+            changePlayStatus();
+        };
+    }, [counter]);
+
+    /*     const covertTimer = () => {
+        const time = soundTime;
+    }; */
+
     return (
         <div className="clock">
+            <audio loop ref={audioRef} key={profileMusic[counter]}>
+                <source src={profileMusic[counter]} />
+            </audio>
             <div className="clock__inner">
                 <img
                     src={playStatus ? playButton : pauseButton}
