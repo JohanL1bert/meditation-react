@@ -1,9 +1,25 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import './bg.scss';
-import videoRain from '../assets/video/rain.mp4';
 
-export const BG = () => (
-    <video>
-        <source src={videoRain} type="video/mp4" />
-    </video>
-);
+export const BG = ({ playStatus, videoState }: { playStatus: boolean; videoState: string[] }) => {
+    const videoEl = useRef(null);
+
+    const handleChange = () => {
+        const video = videoEl.current as unknown as HTMLVideoElement;
+        if (playStatus) {
+            video.play();
+        } else {
+            video.pause();
+        }
+    };
+
+    useEffect(() => {
+        handleChange();
+    }, [playStatus]);
+
+    return (
+        <video loop ref={videoEl}>
+            <source src={videoState[0]} type="video/mp4" />
+        </video>
+    );
+};

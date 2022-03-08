@@ -1,10 +1,14 @@
 import React from 'react';
 import './changeBG.scss';
 
-export const ChangeBG: React.FC = () => {
-    const goPrev = () => {};
+export const ChangeBG = ({ setCounter }: { setCounter: React.Dispatch<React.SetStateAction<number>> }) => {
+    const goPrev = () => {
+        setCounter((prev) => prev - 1);
+    };
 
-    const goNext = () => {};
+    const goNext = () => {
+        setCounter((prev) => prev + 1);
+    };
 
     return (
         <div className="bg__inner">
