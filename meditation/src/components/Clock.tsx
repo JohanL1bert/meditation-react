@@ -19,22 +19,15 @@ export const Clock = (props: any) => {
         } */
 
         if (playStatus) {
-            audio.load();
             audio.play();
         } else {
             audio.pause();
         }
-
-        setPlayStatus(!playStatus);
     };
 
     useEffect(() => {
         changePlayStatus();
-
-        return () => {
-            changePlayStatus();
-        };
-    }, [counter]);
+    }, [counter, playStatus]);
 
     /*     const covertTimer = () => {
         const time = soundTime;
@@ -47,10 +40,10 @@ export const Clock = (props: any) => {
             </audio>
             <div className="clock__inner">
                 <img
-                    src={playStatus ? playButton : pauseButton}
+                    src={!playStatus ? playButton : pauseButton}
                     alt="play button"
                     className="clock__play"
-                    onClick={changePlayStatus}
+                    onClick={() => setPlayStatus(!playStatus)}
                     aria-hidden="true"
                 />
                 <svg

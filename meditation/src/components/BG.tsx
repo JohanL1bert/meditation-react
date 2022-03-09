@@ -1,7 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 import './bg.scss';
+import { profileVideo } from '../Profile';
 
-export const BG = ({ playStatus, videoState }: { playStatus: boolean; videoState: string[] }) => {
+interface IBg {
+    playStatus: boolean;
+    counter: number;
+}
+
+export const BG = ({ playStatus, counter }: IBg) => {
     const videoEl = useRef(null);
 
     const handleChange = () => {
@@ -18,8 +24,8 @@ export const BG = ({ playStatus, videoState }: { playStatus: boolean; videoState
     }, [playStatus]);
 
     return (
-        <video loop ref={videoEl}>
-            <source src={videoState[0]} type="video/mp4" />
+        <video key={profileVideo[counter]} loop muted ref={videoEl}>
+            <source src={profileVideo[counter]} type="video/mp4" />
         </video>
     );
 };

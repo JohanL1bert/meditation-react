@@ -23,7 +23,7 @@ function App() {
             <div className="main__page">
                 <Button {...{ setSoundTime }} />
                 <Clock {...{ playStatus, setPlayStatus, soundTime, music, videoState, setVideoState, counter }} />
-                <ChangeBG {...{ setPlayStatus, setCounter }} />
+                <ChangeBG {...{ playStatus, setPlayStatus, counter, setCounter }} />
             </div>
             <footer className="footer" />
         </div>
