@@ -4,6 +4,9 @@ import playButton from '../assets/svg/play.svg';
 import pauseButton from '../assets/svg/pause.svg';
 import { profileMusic } from '../Profile';
 
+const RadiusDashArray = 2 * Math.PI * 216.5;
+/* const ZERODashOffset = 1360.3; */
+
 export const Clock = (props: any) => {
     const { playStatus, setPlayStatus, soundTime, counter } = props;
 
@@ -19,22 +22,15 @@ export const Clock = (props: any) => {
         } */
 
         if (playStatus) {
-            audio.load();
             audio.play();
         } else {
             audio.pause();
         }
-
-        setPlayStatus(!playStatus);
     };
 
     useEffect(() => {
         changePlayStatus();
-
-        return () => {
-            changePlayStatus();
-        };
-    }, [counter]);
+    }, [counter, playStatus]);
 
     /*     const covertTimer = () => {
         const time = soundTime;
@@ -47,10 +43,10 @@ export const Clock = (props: any) => {
             </audio>
             <div className="clock__inner">
                 <img
-                    src={playStatus ? playButton : pauseButton}
+                    src={!playStatus ? playButton : pauseButton}
                     alt="play button"
                     className="clock__play"
-                    onClick={changePlayStatus}
+                    onClick={() => setPlayStatus(!playStatus)}
                     aria-hidden="true"
                 />
                 <svg
@@ -72,7 +68,15 @@ export const Clock = (props: any) => {
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                 >
-                    <circle cx="226.5" cy="226.5" r="216.5" stroke="#018EBA" strokeWidth="20" strokeDasharray={1} />
+                    <circle
+                        cx="226.5"
+                        cy="226.5"
+                        r="216.5"
+                        stroke="#018EBA"
+                        strokeWidth="20"
+                        strokeDashoffset={1360.0}
+                        strokeDasharray={RadiusDashArray}
+                    />
                 </svg>
 
                 <p className="clock__time">{soundTime}</p>

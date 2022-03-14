@@ -1,13 +1,29 @@
 import React from 'react';
 import './changeBG.scss';
+import { lenOfProfile } from '../Profile';
 
-export const ChangeBG = ({ setCounter }: { setCounter: React.Dispatch<React.SetStateAction<number>> }) => {
+interface IChangeBg {
+    playStatus: boolean;
+    setPlayStatus: React.Dispatch<React.SetStateAction<boolean>>;
+    counter: number;
+    setCounter: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export const ChangeBG = ({ playStatus, setPlayStatus, counter, setCounter }: IChangeBg) => {
     const goPrev = () => {
-        setCounter((prev) => prev - 1);
+        if (playStatus) {
+            setPlayStatus(false);
+        }
+
+        return counter === 0 ? setCounter(lenOfProfile) : setCounter((prev) => prev - 1);
     };
 
     const goNext = () => {
-        setCounter((prev) => prev + 1);
+        if (playStatus) {
+            setPlayStatus(false);
+        }
+
+        return counter === lenOfProfile ? setCounter(0) : setCounter((prev) => prev + 1);
     };
 
     return (
