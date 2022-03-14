@@ -5,9 +5,11 @@ import { profileVideo } from '../Profile';
 interface IBg {
     playStatus: boolean;
     counter: number;
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+    loading: boolean;
 }
 
-export const BG = ({ playStatus, counter }: IBg) => {
+export const BG = ({ playStatus, counter, setLoading, loading }: IBg) => {
     const videoEl = useRef(null);
 
     const handleChange = () => {
@@ -20,8 +22,9 @@ export const BG = ({ playStatus, counter }: IBg) => {
     };
 
     useEffect(() => {
+        console.log(setLoading);
         handleChange();
-    }, [playStatus]);
+    }, [playStatus, loading]);
 
     return (
         <video key={profileVideo[counter]} loop muted ref={videoEl}>
