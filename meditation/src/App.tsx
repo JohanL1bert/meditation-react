@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { /* useEffect, */ useState } from 'react';
 import './App.scss';
 import { css } from '@emotion/react';
 import MoonLoader from 'react-spinners/MoonLoader';
@@ -8,7 +8,7 @@ import { ChangeBG } from './components/ChangeBG';
 import { BG } from './components/BG';
 
 const override = css`
-    display: block;
+    display: flex;
     margin: 0 auto;
     border-color: red;
 `;
@@ -21,19 +21,21 @@ function App() {
     const [soundTime, setSoundTime] = useState<number>(0);
     const [counter, setCounter] = useState<number>(0);
 
-    if (loading) {
-        return <MoonLoader css={override} loading={loading} size={150} />;
-    }
-
     return (
         <div className="App">
             <header className="App-header" />
             <BG {...{ playStatus, counter, setLoading, loading }} />
-            <div className="main__page">
-                <Button {...{ setSoundTime }} />
-                <Clock {...{ playStatus, setPlayStatus, soundTime, counter }} />
-                <ChangeBG {...{ playStatus, setPlayStatus, counter, setCounter }} />
-            </div>
+            {loading ? (
+                <div className="spinner">
+                    <MoonLoader css={override} loading={loading} size={250} />
+                </div>
+            ) : (
+                <div className="main__page">
+                    <Button {...{ setSoundTime }} />
+                    <Clock {...{ playStatus, setPlayStatus, soundTime, counter }} />
+                    <ChangeBG {...{ playStatus, setPlayStatus, counter, setCounter, setLoading }} />
+                </div>
+            )}
             <footer className="footer" />
         </div>
     );

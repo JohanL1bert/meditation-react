@@ -22,12 +22,19 @@ export const BG = ({ playStatus, counter, setLoading, loading }: IBg) => {
     };
 
     useEffect(() => {
-        console.log(setLoading);
         handleChange();
     }, [playStatus, loading]);
 
     return (
-        <video key={profileVideo[counter]} loop muted ref={videoEl}>
+        <video
+            key={profileVideo[counter]}
+            loop
+            muted
+            ref={videoEl}
+            onLoadedData={() => {
+                setLoading(false);
+            }}
+        >
             <source src={profileVideo[counter]} type="video/mp4" />
         </video>
     );

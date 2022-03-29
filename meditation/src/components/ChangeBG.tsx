@@ -7,14 +7,16 @@ interface IChangeBg {
     setPlayStatus: React.Dispatch<React.SetStateAction<boolean>>;
     counter: number;
     setCounter: React.Dispatch<React.SetStateAction<number>>;
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const ChangeBG = ({ playStatus, setPlayStatus, counter, setCounter }: IChangeBg) => {
+export const ChangeBG = ({ playStatus, setPlayStatus, counter, setCounter, setLoading }: IChangeBg) => {
     const goPrev = () => {
         if (playStatus) {
             setPlayStatus(false);
         }
 
+        setLoading(true);
         return counter === 0 ? setCounter(lenOfProfile) : setCounter((prev) => prev - 1);
     };
 
@@ -23,6 +25,7 @@ export const ChangeBG = ({ playStatus, setPlayStatus, counter, setCounter }: ICh
             setPlayStatus(false);
         }
 
+        setLoading(true);
         return counter === lenOfProfile ? setCounter(0) : setCounter((prev) => prev + 1);
     };
 

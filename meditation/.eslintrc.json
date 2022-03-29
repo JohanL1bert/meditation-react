@@ -12,7 +12,7 @@
         "ecmaVersion": 2019,
         "sourceType": "module"
     },
-    "plugins": ["react", "@typescript-eslint", "@emotion"],
+    "plugins": ["react", "@typescript-eslint"],
     "settings": {
         "import/resolver": {
             "node": {
