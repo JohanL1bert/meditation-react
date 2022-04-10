@@ -3,6 +3,7 @@ import './clock.scss';
 import playButton from '../assets/svg/play.svg';
 import pauseButton from '../assets/svg/pause.svg';
 import { profileMusic } from '../Profile';
+import { calculateTime } from '../helper';
 
 export const Clock = (props: any) => {
     const {
@@ -15,6 +16,8 @@ export const Clock = (props: any) => {
         distance,
         setDistance,
         RadiusDashArray,
+        clockTime,
+        setClockTime,
     } = props;
 
     const svgEl = useRef<null>(null);
@@ -44,10 +47,11 @@ export const Clock = (props: any) => {
         if (playStatus) {
             timeTick = window.setInterval(() => {
                 calculateSpeed();
+                const newTime = calculateTime(soundTime);
+                setClockTime(newTime);
                 const minusOneSecond = soundTime - 1;
                 if (soundTime === 1) {
                     setPlayStatus(false);
-
                     setSoundTime(timerInstance);
                 }
                 setSoundTime(minusOneSecond);
@@ -102,7 +106,7 @@ export const Clock = (props: any) => {
                     />
                 </svg>
 
-                <p className="clock__time">{soundTime}</p>
+                <p className="clock__time">{clockTime}</p>
             </div>
         </div>
     );

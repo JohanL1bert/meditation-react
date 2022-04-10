@@ -1,15 +1,19 @@
 import React from 'react';
 import './buttons.scss';
+import { calculateTime } from '../helper';
 
 interface ISoundTime {
     setSoundTime: React.Dispatch<React.SetStateAction<number>>;
     setInstanceTime: React.Dispatch<React.SetStateAction<number>>;
     setDistance: React.Dispatch<React.SetStateAction<number>>;
     RadiusDashArray: number;
+    setClockTime: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const Button = ({ setSoundTime, setInstanceTime, setDistance, RadiusDashArray }: ISoundTime) => {
+export const Button = ({ setSoundTime, setInstanceTime, setDistance, RadiusDashArray, setClockTime }: ISoundTime) => {
     const getTime = (time: number) => {
+        const newTimer = calculateTime(time);
+        setClockTime(newTimer);
         setInstanceTime(time);
         setSoundTime(time);
         setDistance(RadiusDashArray);
