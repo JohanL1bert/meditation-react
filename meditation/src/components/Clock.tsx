@@ -4,23 +4,24 @@ import playButton from '../assets/svg/play.svg';
 import pauseButton from '../assets/svg/pause.svg';
 import { profileMusic } from '../Profile';
 
-const RadiusDashArray = 2 * Math.PI * 216.5;
-/* const ZERODashOffset = 1360.3; */
-
 export const Clock = (props: any) => {
-    const { playStatus, setPlayStatus, soundTime, counter } = props;
+    const {
+        playStatus,
+        setPlayStatus,
+        soundTime,
+        setSoundTime,
+        counter,
+        timerInstance,
+        distance,
+        setDistance,
+        RadiusDashArray,
+    } = props;
 
-    const svgEl = useRef(null);
-    const audioRef = useRef(null);
-    /* const [strokeLength, setStrokeLength] = useState<number>(0); */
+    const svgEl = useRef<null>(null);
+    const audioRef = useRef<HTMLAudioElement>(null);
 
     const changePlayStatus = () => {
-        const audio = audioRef.current as unknown as HTMLAudioElement;
-
-        /*         if (svgEl.current !== null) {
-            const geometrySvgEl = svgEl.current as SVGGeometryElement;
-        } */
-
+        const audio = audioRef.current!;
         if (playStatus) {
             audio.play();
         } else {
@@ -28,13 +29,35 @@ export const Clock = (props: any) => {
         }
     };
 
+    const calculateSpeed = () => {
+        const newDistance = RadiusDashArray / timerInstance;
+
+        setDistance((prev: number) => prev + newDistance);
+    };
+
     useEffect(() => {
         changePlayStatus();
     }, [counter, playStatus]);
 
-    /*     const covertTimer = () => {
-        const time = soundTime;
-    }; */
+    useEffect(() => {
+        let timeTick: number;
+        if (playStatus) {
+            timeTick = window.setInterval(() => {
+                calculateSpeed();
+                const minusOneSecond = soundTime - 1;
+                if (soundTime === 1) {
+                    setPlayStatus(false);
+
+                    setSoundTime(timerInstance);
+                }
+                setSoundTime(minusOneSecond);
+            }, 1000);
+        }
+
+        return () => {
+            if (timeTick) window.clearInterval(timeTick);
+        };
+    }, [soundTime, playStatus]);
 
     return (
         <div className="clock">
@@ -74,7 +97,7 @@ export const Clock = (props: any) => {
                         r="216.5"
                         stroke="#018EBA"
                         strokeWidth="20"
-                        strokeDashoffset={1360.0}
+                        strokeDashoffset={distance}
                         strokeDasharray={RadiusDashArray}
                     />
                 </svg>

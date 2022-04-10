@@ -10,10 +10,10 @@ interface IBg {
 }
 
 export const BG = ({ playStatus, counter, setLoading, loading }: IBg) => {
-    const videoEl = useRef(null);
+    const videoEl = useRef<HTMLVideoElement>(null);
 
     const handleChange = () => {
-        const video = videoEl.current as unknown as HTMLVideoElement;
+        const video = videoEl.current!;
         if (playStatus) {
             video.play();
         } else {
@@ -22,12 +22,19 @@ export const BG = ({ playStatus, counter, setLoading, loading }: IBg) => {
     };
 
     useEffect(() => {
-        console.log(setLoading);
         handleChange();
-    }, [playStatus, loading]);
+    }, [loading]);
 
     return (
-        <video key={profileVideo[counter]} loop muted ref={videoEl}>
+        <video
+            key={profileVideo[counter]}
+            loop
+            muted
+            ref={videoEl}
+            onLoadedData={() => {
+                setLoading(false);
+            }}
+        >
             <source src={profileVideo[counter]} type="video/mp4" />
         </video>
     );
