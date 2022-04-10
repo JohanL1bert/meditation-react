@@ -22,6 +22,7 @@ function App() {
     const [timerInstance, setInstanceTime] = useState<number>(120);
     const [counter, setCounter] = useState<number>(0);
     const [distance, setDistance] = useState<number>(RadiusDashArray);
+    const [clockTime, setClockTime] = useState<string>('00:02:00');
 
     return (
         <div className="App">
@@ -33,7 +34,7 @@ function App() {
                 </div>
             ) : (
                 <div className="main__page">
-                    <Button {...{ setSoundTime, setInstanceTime, setDistance, RadiusDashArray }} />
+                    <Button {...{ setSoundTime, setInstanceTime, setDistance, RadiusDashArray, setClockTime }} />
                     <Clock
                         {...{
                             playStatus,
@@ -45,6 +46,8 @@ function App() {
                             distance,
                             setDistance,
                             RadiusDashArray,
+                            clockTime,
+                            setClockTime,
                         }}
                     />
                     <ChangeBG
@@ -56,6 +59,8 @@ function App() {
                             setLoading,
                             setDistance,
                             RadiusDashArray,
+                            clockTime,
+                            setClockTime,
                         }}
                     />
                 </div>
