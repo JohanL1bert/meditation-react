@@ -1,7 +1,8 @@
 import React from 'react';
 import './changeBG.scss';
 import { lenOfProfile } from '../Profile';
-
+/* import { helper } from '../helper';
+ */
 interface IChangeBg {
     playStatus: boolean;
     setPlayStatus: React.Dispatch<React.SetStateAction<boolean>>;

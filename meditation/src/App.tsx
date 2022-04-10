@@ -59,6 +59,8 @@ function App() {
                             setLoading,
                             setDistance,
                             RadiusDashArray,
+                            clockTime,
+                            setClockTime,
                         }}
                     />
                 </div>
