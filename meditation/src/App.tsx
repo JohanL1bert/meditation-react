@@ -13,13 +13,15 @@ const override = css`
     border-color: red;
 `;
 
+const RadiusDashArray = 2 * Math.PI * 216.5;
+
 function App() {
-    /* const fakeDuration = 600; */
-    /* const [statusMusic, setStatusMusic] = useState<boolean>(false); */
     const [playStatus, setPlayStatus] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
-    const [soundTime, setSoundTime] = useState<number>(0);
+    const [soundTime, setSoundTime] = useState<number>(120);
+    const [timerInstance, setInstanceTime] = useState<number>(120);
     const [counter, setCounter] = useState<number>(0);
+    const [distance, setDistance] = useState<number>(RadiusDashArray);
 
     return (
         <div className="App">
@@ -31,9 +33,31 @@ function App() {
                 </div>
             ) : (
                 <div className="main__page">
-                    <Button {...{ setSoundTime }} />
-                    <Clock {...{ playStatus, setPlayStatus, soundTime, counter }} />
-                    <ChangeBG {...{ playStatus, setPlayStatus, counter, setCounter, setLoading }} />
+                    <Button {...{ setSoundTime, setInstanceTime, setDistance, RadiusDashArray }} />
+                    <Clock
+                        {...{
+                            playStatus,
+                            setPlayStatus,
+                            soundTime,
+                            setSoundTime,
+                            counter,
+                            timerInstance,
+                            distance,
+                            setDistance,
+                            RadiusDashArray,
+                        }}
+                    />
+                    <ChangeBG
+                        {...{
+                            playStatus,
+                            setPlayStatus,
+                            counter,
+                            setCounter,
+                            setLoading,
+                            setDistance,
+                            RadiusDashArray,
+                        }}
+                    />
                 </div>
             )}
             <footer className="footer" />

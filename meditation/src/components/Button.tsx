@@ -1,14 +1,18 @@
 import React from 'react';
 import './buttons.scss';
 
-/* interface ISoundTime {
-    soundTime: number;
+interface ISoundTime {
     setSoundTime: React.Dispatch<React.SetStateAction<number>>;
+    setInstanceTime: React.Dispatch<React.SetStateAction<number>>;
+    setDistance: React.Dispatch<React.SetStateAction<number>>;
+    RadiusDashArray: number;
 }
- */
-export const Button = ({ setSoundTime }: { setSoundTime: React.Dispatch<React.SetStateAction<number>> }) => {
+
+export const Button = ({ setSoundTime, setInstanceTime, setDistance, RadiusDashArray }: ISoundTime) => {
     const getTime = (time: number) => {
+        setInstanceTime(time);
         setSoundTime(time);
+        setDistance(RadiusDashArray);
     };
 
     return (

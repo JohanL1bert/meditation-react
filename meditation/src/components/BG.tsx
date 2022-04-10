@@ -10,10 +10,10 @@ interface IBg {
 }
 
 export const BG = ({ playStatus, counter, setLoading, loading }: IBg) => {
-    const videoEl = useRef(null);
+    const videoEl = useRef<HTMLVideoElement>(null);
 
     const handleChange = () => {
-        const video = videoEl.current as unknown as HTMLVideoElement;
+        const video = videoEl.current!;
         if (playStatus) {
             video.play();
         } else {
@@ -23,7 +23,7 @@ export const BG = ({ playStatus, counter, setLoading, loading }: IBg) => {
 
     useEffect(() => {
         handleChange();
-    }, [playStatus, loading]);
+    }, [loading]);
 
     return (
         <video

@@ -8,14 +8,25 @@ interface IChangeBg {
     counter: number;
     setCounter: React.Dispatch<React.SetStateAction<number>>;
     setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+    setDistance: React.Dispatch<React.SetStateAction<number>>;
+    RadiusDashArray: number;
 }
 
-export const ChangeBG = ({ playStatus, setPlayStatus, counter, setCounter, setLoading }: IChangeBg) => {
+export const ChangeBG = ({
+    playStatus,
+    setPlayStatus,
+    counter,
+    setCounter,
+    setLoading,
+    setDistance,
+    RadiusDashArray,
+}: IChangeBg) => {
     const goPrev = () => {
         if (playStatus) {
             setPlayStatus(false);
         }
 
+        setDistance(RadiusDashArray);
         setLoading(true);
         return counter === 0 ? setCounter(lenOfProfile) : setCounter((prev) => prev - 1);
     };
@@ -25,6 +36,7 @@ export const ChangeBG = ({ playStatus, setPlayStatus, counter, setCounter, setLo
             setPlayStatus(false);
         }
 
+        setDistance(RadiusDashArray);
         setLoading(true);
         return counter === lenOfProfile ? setCounter(0) : setCounter((prev) => prev + 1);
     };
