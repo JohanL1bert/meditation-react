@@ -1,4 +1,4 @@
-import React, { /* useEffect, */ useState } from 'react';
+import React, { useState } from 'react';
 import './App.scss';
 import { css } from '@emotion/react';
 import MoonLoader from 'react-spinners/MoonLoader';
