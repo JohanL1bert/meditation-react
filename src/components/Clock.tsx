@@ -34,7 +34,6 @@ export const Clock = (props: IClock) => {
         setClockTime,
     } = props;
 
-    const svgEl = useRef<null>(null);
     const audioRef = useRef<HTMLAudioElement>(null);
 
     const changePlayStatus = () => {
@@ -101,7 +100,6 @@ export const Clock = (props: IClock) => {
                     <circle cx="226.5" cy="226.5" r="216.5" stroke="white" strokeWidth="20" />
                 </svg>
                 <svg
-                    ref={svgEl}
                     className="clock__moving__outline"
                     width="453"
                     height="453"
