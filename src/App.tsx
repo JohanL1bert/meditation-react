@@ -27,7 +27,6 @@ function App() {
 
     return (
         <div className="App">
-            <header className="App-header" />
             <BG {...{ playStatus, counter, setLoading, loading }} />
             {loading ? (
                 <div className="spinner">
@@ -73,7 +72,6 @@ function App() {
                     />
                 </div>
             )}
-            <footer className="footer" />
         </div>
     );
 }
