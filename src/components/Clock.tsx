@@ -5,7 +5,21 @@ import pauseButton from '../assets/svg/pause.svg';
 import { profileMusic } from '../Profile';
 import { calculateTime } from '../helper';
 
-export const Clock = (props: any) => {
+interface IClock {
+    playStatus: boolean;
+    setPlayStatus: React.Dispatch<React.SetStateAction<boolean>>;
+    soundTime: number;
+    setSoundTime: React.Dispatch<React.SetStateAction<number>>;
+    counter: number;
+    timerInstance: number;
+    distance: number;
+    setDistance: React.Dispatch<React.SetStateAction<number>>;
+    RadiusDashArray: number;
+    clockTime: string;
+    setClockTime: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export const Clock = (props: IClock) => {
     const {
         playStatus,
         setPlayStatus,
@@ -20,7 +34,6 @@ export const Clock = (props: any) => {
         setClockTime,
     } = props;
 
-    const svgEl = useRef<null>(null);
     const audioRef = useRef<HTMLAudioElement>(null);
 
     const changePlayStatus = () => {
@@ -87,7 +100,6 @@ export const Clock = (props: any) => {
                     <circle cx="226.5" cy="226.5" r="216.5" stroke="white" strokeWidth="20" />
                 </svg>
                 <svg
-                    ref={svgEl}
                     className="clock__moving__outline"
                     width="453"
                     height="453"
