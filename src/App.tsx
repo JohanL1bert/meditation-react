@@ -6,6 +6,7 @@ import { Button } from './components/Button';
 import { Clock } from './components/Clock';
 import { ChangeBG } from './components/ChangeBG';
 import { BG } from './components/BG';
+import { timerString } from './helper';
 
 const override = css`
     display: flex;
@@ -22,7 +23,7 @@ function App() {
     const [timerInstance, setInstanceTime] = useState<number>(120);
     const [counter, setCounter] = useState<number>(0);
     const [distance, setDistance] = useState<number>(RadiusDashArray);
-    const [clockTime, setClockTime] = useState<string>('00:02:00');
+    const [clockTime, setClockTime] = useState<string>(timerString.value);
 
     return (
         <div className="App">
@@ -34,7 +35,15 @@ function App() {
                 </div>
             ) : (
                 <div className="main__page">
-                    <Button {...{ setSoundTime, setInstanceTime, setDistance, RadiusDashArray, setClockTime }} />
+                    <Button
+                        {...{
+                            setSoundTime,
+                            setInstanceTime,
+                            setDistance,
+                            RadiusDashArray,
+                            setClockTime,
+                        }}
+                    />
                     <Clock
                         {...{
                             playStatus,
@@ -59,7 +68,6 @@ function App() {
                             setLoading,
                             setDistance,
                             RadiusDashArray,
-                            clockTime,
                             setClockTime,
                         }}
                     />
