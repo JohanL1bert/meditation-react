@@ -5,7 +5,21 @@ import pauseButton from '../assets/svg/pause.svg';
 import { profileMusic } from '../Profile';
 import { calculateTime } from '../helper';
 
-export const Clock = (props: any) => {
+interface IClock {
+    playStatus: boolean;
+    setPlayStatus: React.Dispatch<React.SetStateAction<boolean>>;
+    soundTime: number;
+    setSoundTime: React.Dispatch<React.SetStateAction<number>>;
+    counter: number;
+    timerInstance: number;
+    distance: number;
+    setDistance: React.Dispatch<React.SetStateAction<number>>;
+    RadiusDashArray: number;
+    clockTime: string;
+    setClockTime: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export const Clock = (props: IClock) => {
     const {
         playStatus,
         setPlayStatus,
