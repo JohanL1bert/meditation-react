@@ -12,6 +12,8 @@ interface IChangeBg {
     setDistance: React.Dispatch<React.SetStateAction<number>>;
     RadiusDashArray: number;
     setClockTime: React.Dispatch<React.SetStateAction<string>>;
+    setSoundTime: React.Dispatch<React.SetStateAction<number>>;
+    timerInstance: number;
 }
 
 export const ChangeBG = React.memo(
@@ -24,9 +26,13 @@ export const ChangeBG = React.memo(
         setDistance,
         RadiusDashArray,
         setClockTime,
+        setSoundTime,
+        timerInstance,
     }: IChangeBg) => {
         const goPrev = () => {
+            setSoundTime(timerInstance);
             setClockTime(timerString.value);
+
             if (playStatus) {
                 setPlayStatus(false);
             }
@@ -37,7 +43,9 @@ export const ChangeBG = React.memo(
         };
 
         const goNext = () => {
+            setSoundTime(timerInstance);
             setClockTime(timerString.value);
+
             if (playStatus) {
                 setPlayStatus(false);
             }

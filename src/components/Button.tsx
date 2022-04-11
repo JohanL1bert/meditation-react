@@ -14,7 +14,6 @@ export const Button = React.memo(
     ({ setSoundTime, setInstanceTime, setDistance, RadiusDashArray, setClockTime }: ISoundTime) => {
         const getTime = (time: number) => {
             const newTimer = calculateTime(time);
-
             timerString.value = switcherTime(time);
 
             setClockTime(newTimer);

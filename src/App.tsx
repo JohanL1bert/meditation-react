@@ -68,6 +68,8 @@ function App() {
                             setDistance,
                             RadiusDashArray,
                             setClockTime,
+                            setSoundTime,
+                            timerInstance,
                         }}
                     />
                 </div>
