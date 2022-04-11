@@ -23,7 +23,7 @@ export const BG = ({ playStatus, counter, setLoading, loading }: IBg) => {
 
     useEffect(() => {
         handleChange();
-    }, [loading]);
+    }, [loading, playStatus]);
 
     return (
         <video

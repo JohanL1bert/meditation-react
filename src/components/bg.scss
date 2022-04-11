@@ -4,4 +4,6 @@ video {
     left: 0;
     width: 100%;
     z-index: -5;
+    height: 100vh;
+    object-fit: fill;
 }

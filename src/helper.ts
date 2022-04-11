@@ -14,3 +14,20 @@ export const calculateTime = (soundTime: number) => {
 
     return `${h}:${m}:${s}`;
 };
+
+export const switcherTime = (timeSecond: number): string => {
+    switch (timeSecond) {
+        case 120:
+            return '00:02:00';
+        case 300:
+            return '00:05:00';
+        case 600:
+            return '00:10:00';
+        default:
+            return '';
+    }
+};
+
+export const timerString = {
+    value: '00:02:00',
+};
